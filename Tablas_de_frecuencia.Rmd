@@ -1,0 +1,109 @@
+---
+title: '"Tutorial Tablas de Frecuencias"'
+author: "Dr. Guevara"
+date: "`r Sys.Date()`"
+output: html_document
+---
+# Tutorial: Tablas de Frecuencias en Excel con Datos de Encuesta 📊
+
+## Introducción 📝
+
+Este tutorial te guiará para organizar y resumir los datos de la Encuesta de Conocimientos Actitudes y Prácticas ante la COVID-19 utilizando Excel. Aprenderás a:
+
+1.  **Crear tablas de frecuencias simples** para variables categóricas: Participación previa, Municipio, género, nivel educativo y enfermedad crónica.
+2.  **Construir una tabla de frecuencias agrupadas** para la variable numérica "edad".
+
+### **Preparación: Tus Datos en Excel**
+
+Asegúrate de que tu archivo de Excel esté organizado con los datos bajo los siguientes encabezados en columnas separadas: `part_prev`, `municipio`, `genero`, `nivel_edu`, `enf_cro`, y `edad`.
+
+---
+
+## Parte 1: Tablas de Frecuencias Simples (Datos Categóricos)
+
+Crearemos una tabla de frecuencias para la variable **`nivel_edu`**. El mismo proceso se aplica para `part_prev`, `municipio`, `genero` y `enf_cro`.
+
+### **Paso 1: Identificar las Categorías Únicas**
+
+Primero, revisa la columna `nivel_edu` e identifica todas las respuestas únicas. Supongamos que no hay inconsistencia de datos, las opciones de esta variable son: **Nunca asistió a la escuela**, **Primer ciclo (1° a 3er grado)**, **Segundo ciclo (4to a 6to grado)**, **Tercer ciclo (7mo a 9no grado)**, **Bachillerato**, **Técnico no universitario** y **Universitaria**.
+
+### **Paso 2: Contar Frecuencias con `CONTAR.SI`**
+
+1.  En una nueva hoja de cálculo, escribe el nombre de la variable "Nivel Educativo" y debajo las categorías que identificaste.
+2.  En la celda de al lado, usa la función `=CONTAR.SI(rango, criterio)` para contar cuántas veces aparece cada una. Si tus niveles educativos están en la columna **F**, la fórmula para "Nunca asistió a la escuela" sería:
+    ```excel
+    =CONTAR.SI('Respuestas de formulario 1'!F2:F516;"Nunca asistió a la escuela")
+    ```
+3.  Repite la fórmula para "Primer ciclo (1° a 3er grado)", "Segundo ciclo (4to a 6to grado)", "Tercer ciclo (7mo a 9no grado)", "Bachillerato", "Técnico no universitario" y "Universitaria".
+
+### **Paso 3: Construir la Tabla Completa**
+
+Una vez contadas las frecuencias absolutas, puedes calcular las demás.
+
+* **Frecuencia Absoluta (fi):** Es el conteo que ya hiciste con `CONTAR.SI`.
+* **Frecuencia Relativa (hi):** Se calcula como `frecuencia de la categoría / total de datos`.
+* **Frecuencia Porcentual (%):** Es la frecuencia relativa expresada como porcentaje.
+
+Tu tabla final para **`nivel_edu`** se verá así:
+
+| Nivel Educativo | Frecuencia Absoluta (fi) | Frecuencia Relativa (hi) | Frecuencia Porcentual (%) |
+| :-------------- | :----------------------- | :----------------------- | :------------------------ |
+| Nunca asistió a la escuela        | 15       | 0.30     | 30%       |
+    |
+| Primer ciclo (1° a 3er grado)     | 25       | 0.50     | 50%       |                     
+    |
+| Segundo ciclo (4to a 6to grado)   | 10       | 0.20     | 20%       |                     
+    |
+| Tercer ciclo (7mo a 9no grado)    | 10       | 0.20     | 20%       |
+    |
+| Técnico no universitario          | 10       | 0.20     | 20%       |
+    |
+| Universitaria                     | 10       | 0.20     | 20%       |
+    |
+| **Total**                         | **50**  | **1.00**  | **100%**  |
+
+> **¡Ahora tú!** 🚀
+> Repite este mismo proceso para las variables `municipio`, `genero`, y `enf_cro` para practicar.
+
+---
+
+## Parte 2: Tabla de Frecuencias Agrupadas (para la Edad)
+
+A menudo, en los análisis demográficos, las edades se agrupan en rangos específicos. Usaremos los siguientes: **18-29 años**, **30-44 años**, **45-64 años** y **65 años o más**.
+
+### **Paso 1: Preparar los Límites para Excel**
+
+La función `FRECUENCIA` de Excel necesita los **límites superiores** de cada grupo para funcionar.
+
+1.  En una columna de tu hoja de cálculo, escribe los límites superiores de tus grupos de edad. Para los grupos definidos, estos serían:
+    * 29
+    * 44
+    * 64
+
+    No necesitas un límite para "65 o más", ya que Excel lo calculará automáticamente.
+
+### **Paso 2: Usar la función `=FRECUENCIA`**
+
+1.  En una columna vacía, selecciona un rango de **cuatro celdas** (una por cada categoría, incluyendo la de "65 o más").
+2.  Sin deseleccionar las celdas, escribe la fórmula `=FRECUENCIA(rango_de_edades, rango_de_límites_superiores)`.
+    * `rango_de_edades`: Es la columna donde están todas las edades (ej. `F:F`).
+    * `rango_de_límites_superiores`: Es el rango que acabas de crear con los números 29, 44, 64.
+
+    **Ejemplo:**
+    ```excel
+    =FRECUENCIA(F:F; J2:J4)
+    ```
+3.  Presiona **`Ctrl + Shift + Enter`** (o solo `Enter` en Microsoft 365). Excel llenará automáticamente las cuatro celdas con el conteo de personas en cada grupo de edad.
+
+### **Paso 3: Construir la Tabla Final**
+
+Ahora solo tienes que organizar los resultados en una tabla clara, añadiendo las columnas de frecuencia relativa y porcentual si lo necesitas.
+
+| Grupo de Edad     | Frecuencia Absoluta (fi) | Frecuencia Porcentual (%) |
+| :---------------- | :----------------------- | :------------------------ |
+| 18 - 29 años      | 17                       | 34%                       |
+| 30 - 44 años      | 14                       | 28%                       |
+| 45 - 64 años      | 11                       | 22%                       |
+| 65 años o más     | 8                        | 16%                       |
+| **Total** | **50** | **100%** |
+
