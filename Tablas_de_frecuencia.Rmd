@@ -2,11 +2,13 @@
 title: '"Tutorial Tablas de Frecuencias"'
 author: "Dr. Guevara"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  pdf_document:
+    latex_engine: xelatex
 ---
-# Tutorial: Tablas de Frecuencias en Excel con Datos de Encuesta 📊
+# Tutorial: Tablas de Frecuencias en Excel con Datos de Encuesta 
 
-## Introducción 📝
+## Introducción 
 
 Este tutorial te guiará para organizar y resumir los datos de la Encuesta de Conocimientos Actitudes y Prácticas ante la COVID-19 utilizando Excel. Aprenderás a:
 
